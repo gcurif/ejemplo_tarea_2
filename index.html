@@ -31,22 +31,22 @@
                     <li>Eso tambien fue una frase generica de formulario</li>
                     <li>Para comenzar presiona el botón comenzar</li>
                 </ul>
+                <div class="button-container">
+                        <button onClick="seleccionarEtapa(2);" >Comenzar</button>
+                </div>
             </div>
-            <!--<div id="pregunta-2" class="pregunta">
+            <div id="pregunta-2" class="pregunta">
 
             </div>
             <div id="pregunta-3" class="pregunta"> 
 
             </div>
-            <div id="pregunta-3" class="pregunta">
-
-            </div>
             <div id="pregunta-4" class="pregunta">
 
-            </div>-->
-        </div>
-        <div class="button-container">
-            <button>Comenzar</button>
+            </div>
+            <div id="pregunta-5" class="pregunta">
+
+            </div>
         </div>
     </div>
 
@@ -61,9 +61,11 @@
     var etapa2 = document.getElementById('pregunta-2');
     var etapa3 = document.getElementById('pregunta-3');
     var etapa4 = document.getElementById('pregunta-4');
+    var etapa5 = document.getElementById('pregunta-5');
 
     function iniciarFormulario(){
-
+        ocultarTodasLasEtapas();
+        etapa1.style.display = 'block';
     }  
 
     /** PARA CAMBIAR DE UNA ETAPA A OTRA SE HACEN DOS PASOS
@@ -79,7 +81,6 @@
         display = 'block' =====> visible (tambien se puede usar flex)
     **/
     function seleccionarEtapa(codigoEtapa){
-
         ocultarTodasLasEtapas();
 
         if(codigoEtapa === 1){
@@ -87,16 +88,20 @@
         }
 
         if(codigoEtapa === 2){
-            etapa1.style.display = 'block';
+            etapa2.style.display = 'block';
         }
 
         if(codigoEtapa === 3){
-            etapa1.style.display = 'block';
+            etapa3.style.display = 'block';
         }
         
         if(codigoEtapa === 4){
-            etapa1.style.display = 'block';
-        }                        
+            etapa4.style.display = 'block';
+        }    
+
+        if(codigoEtapa === 5){
+            etapa5.style.display = 'block';
+        }                                
     }
 
     function ocultarTodasLasEtapas(){
@@ -104,8 +109,10 @@
         etapa2.style.display = 'none';
         etapa3.style.display = 'none';
         etapa4.style.display = 'none';
-    }  
+        etapa5.style.display = 'none';
+    } 
 
+    iniciarFormulario();
     </script>
 
     <!-- DEFIINICION DE ESTILOS -->
