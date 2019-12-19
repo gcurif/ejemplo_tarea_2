@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<!--CONTENIDO HTML-->
 <body>
     <div class="main-container">
         <div class="titulo">
@@ -49,9 +50,65 @@
         </div>
     </div>
 
+    <!-- PARTE LOGICA -->
     <script type="text/javascript">
+
+    const OPCION_PAN_1 =  'marraqueta pelua'
+    const OPCION_PAN_2 =  'tus panes bb 1313'
+    const OPCION_PAN_3 =  'ayuyaaaaaaaaa'
+
+    var etapa1 = document.getElementById('pregunta-1');
+    var etapa2 = document.getElementById('pregunta-2');
+    var etapa3 = document.getElementById('pregunta-3');
+    var etapa4 = document.getElementById('pregunta-4');
+
+    function iniciarFormulario(){
+
+    }  
+
+    /** PARA CAMBIAR DE UNA ETAPA A OTRA SE HACEN DOS PASOS
+        1- PRIMERO SE OCULTAN TODAS LA ETAPAS, LUEGO 
+        2- SE HACE VISIBLE LA ETAPA SELECCIONADA    
+    **/
+
+    /** NOTA: EXISTEN MUCHAS FORMAS DE NAVEGAR ENTRE ETAPAS (ALGUNAS MAS EFICIENTES),
+        SOLO SE ESCOGIO LA MAS SENCILLA DE LEER EN EL CODIGO   **/
+
+    /**
+        display = 'none'  =====> invisible
+        display = 'block' =====> visible (tambien se puede usar flex)
+    **/
+    function seleccionarEtapa(codigoEtapa){
+
+        ocultarTodasLasEtapas();
+
+        if(codigoEtapa === 1){
+            etapa1.style.display = 'block';
+        }
+
+        if(codigoEtapa === 2){
+            etapa1.style.display = 'block';
+        }
+
+        if(codigoEtapa === 3){
+            etapa1.style.display = 'block';
+        }
+        
+        if(codigoEtapa === 4){
+            etapa1.style.display = 'block';
+        }                        
+    }
+
+    function ocultarTodasLasEtapas(){
+        etapa1.style.display = 'none';
+        etapa2.style.display = 'none';
+        etapa3.style.display = 'none';
+        etapa4.style.display = 'none';
+    }  
+
     </script>
 
+    <!-- DEFIINICION DE ESTILOS -->
     <style type="text/css">
         * {
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
