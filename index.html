@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <!--ESPECIFICACIONES BASICAS-->
+    <!--ESPECIFICACIONES BASICAS (VAN EN HEAD)-->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>FORMULARIO PA COMPRAR EL PAN</title>
@@ -10,6 +10,7 @@
 </head>
 
 <!--CONTENIDO HTML-->
+
 <body>
     <div class="main-container">
         <div class="titulo">
@@ -32,13 +33,23 @@
                     <li>Para comenzar presiona el botón comenzar</li>
                 </ul>
                 <div class="button-container">
-                        <button onClick="seleccionarEtapa(2);" >Comenzar</button>
+                    <button onClick="seleccionarEtapa(2);">Comenzar</button>
                 </div>
             </div>
             <div id="pregunta-2" class="pregunta">
-
+                <h3>Ingresa los siguientes datos</h3>
+                <p>Nombre the rial</p>
+                <input type="text">
+                <p>apellido y linaje (apellido)</p>
+                <input type="text">
+                <p>tipo de sangre</p>
+                <input type="text">
+                <p></p>
+                <div class="button-container">
+                    <button onClick="seleccionarEtapa(3);">Siguiente</button>
+                </div>
             </div>
-            <div id="pregunta-3" class="pregunta"> 
+            <div id="pregunta-3" class="pregunta">
 
             </div>
             <div id="pregunta-4" class="pregunta">
@@ -53,66 +64,67 @@
     <!-- PARTE LOGICA -->
     <script type="text/javascript">
 
-    const OPCION_PAN_1 =  'marraqueta pelua'
-    const OPCION_PAN_2 =  'tus panes bb 1313'
-    const OPCION_PAN_3 =  'ayuyaaaaaaaaa'
+        const OPCION_PAN_1 = 'marraqueta pelua'
+        const OPCION_PAN_2 = 'tus panes bb 1313'
+        const OPCION_PAN_3 = 'ayuyaaaaaaaaa'
 
-    var etapa1 = document.getElementById('pregunta-1');
-    var etapa2 = document.getElementById('pregunta-2');
-    var etapa3 = document.getElementById('pregunta-3');
-    var etapa4 = document.getElementById('pregunta-4');
-    var etapa5 = document.getElementById('pregunta-5');
+        const CODIGO_ETAPA_INICIAL = 1;
 
-    function iniciarFormulario(){
-        ocultarTodasLasEtapas();
-        etapa1.style.display = 'block';
-    }  
+        var etapa1 = document.getElementById('pregunta-1');
+        var etapa2 = document.getElementById('pregunta-2');
+        var etapa3 = document.getElementById('pregunta-3');
+        var etapa4 = document.getElementById('pregunta-4');
+        var etapa5 = document.getElementById('pregunta-5');
 
-    /** PARA CAMBIAR DE UNA ETAPA A OTRA SE HACEN DOS PASOS
-        1- PRIMERO SE OCULTAN TODAS LA ETAPAS, LUEGO 
-        2- SE HACE VISIBLE LA ETAPA SELECCIONADA    
-    **/
-
-    /** NOTA: EXISTEN MUCHAS FORMAS DE NAVEGAR ENTRE ETAPAS (ALGUNAS MAS EFICIENTES),
-        SOLO SE ESCOGIO LA MAS SENCILLA DE LEER EN EL CODIGO   **/
-
-    /**
-        display = 'none'  =====> invisible
-        display = 'block' =====> visible (tambien se puede usar flex)
-    **/
-    function seleccionarEtapa(codigoEtapa){
-        ocultarTodasLasEtapas();
-
-        if(codigoEtapa === 1){
-            etapa1.style.display = 'block';
+        function iniciarFormulario() {
+            seleccionarEtapa(CODIGO_ETAPA_INICIAL);
         }
 
-        if(codigoEtapa === 2){
-            etapa2.style.display = 'block';
+        /** PARA CAMBIAR DE UNA ETAPA A OTRA SE HACEN DOS PASOS
+            1- PRIMERO SE OCULTAN TODAS LA ETAPAS, LUEGO 
+            2- SE HACE VISIBLE LA ETAPA SELECCIONADA    
+        **/
+
+        /** NOTA: EXISTEN MUCHAS FORMAS DE NAVEGAR ENTRE ETAPAS (ALGUNAS MAS EFICIENTES),
+            SOLO SE ESCOGIO LA MAS SENCILLA DE LEER EN EL CODIGO   **/
+
+        /**
+            display = 'none'  =====> invisible
+            display = 'block' =====> visible (tambien se puede usar flex)
+        **/
+        function seleccionarEtapa(codigoEtapa) {
+            // PRIMERO SE OCULTAN TODAS LAS ETAPAAAAAAAAAAS
+            ocultarTodasLasEtapas();
+            if (codigoEtapa === 1) {
+                etapa1.style.display = 'block';
+            }
+
+            if (codigoEtapa === 2) {
+                etapa2.style.display = 'block';
+            }
+
+            if (codigoEtapa === 3) {
+                etapa3.style.display = 'block';
+            }
+
+            if (codigoEtapa === 4) {
+                etapa4.style.display = 'block';
+            }
+
+            if (codigoEtapa === 5) {
+                etapa5.style.display = 'block';
+            }
         }
 
-        if(codigoEtapa === 3){
-            etapa3.style.display = 'block';
+        function ocultarTodasLasEtapas() {
+            etapa1.style.display = 'none';
+            etapa2.style.display = 'none';
+            etapa3.style.display = 'none';
+            etapa4.style.display = 'none';
+            etapa5.style.display = 'none';
         }
-        
-        if(codigoEtapa === 4){
-            etapa4.style.display = 'block';
-        }    
 
-        if(codigoEtapa === 5){
-            etapa5.style.display = 'block';
-        }                                
-    }
-
-    function ocultarTodasLasEtapas(){
-        etapa1.style.display = 'none';
-        etapa2.style.display = 'none';
-        etapa3.style.display = 'none';
-        etapa4.style.display = 'none';
-        etapa5.style.display = 'none';
-    } 
-
-    iniciarFormulario();
+        iniciarFormulario();
     </script>
 
     <!-- DEFIINICION DE ESTILOS -->
@@ -154,6 +166,7 @@
             margin-top: 5%;
             padding: 2%;
             border-radius: 2px;
+            height: fit-content;
 
             -webkit-box-shadow: 9px 11px 16px -8px rgba(0, 0, 0, 0.75);
             -moz-box-shadow: 9px 11px 16px -8px rgba(0, 0, 0, 0.75);
@@ -165,8 +178,25 @@
             margin-left: 3%;
         }
 
-        .pregunta {
-            height: 250px
+        #pregunta-1 {
+            height: 300px;
+        }
+
+        #pregunta-2 {
+            height: 360px;
+            text-align: center;
+        }
+
+        #pregunta-3 {
+            height: 250px;
+        }
+
+        #pregunta-4 {
+            height: 250px;
+        }        
+
+        #pregunta-5 {
+            height: 250px;
         }
 
         hr {
@@ -178,6 +208,12 @@
 
         .button-container {
             text-align: center;
+        }
+
+        input[type="text"] {
+            width: 250px;
+            height: 35px;
+            border-radius: 5px;
         }
 
         button {
