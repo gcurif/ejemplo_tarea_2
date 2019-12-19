@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div id="pregunta-2" class="pregunta">
-                <h3>Ingresa los siguientes datos</h3>
+                <h4>Ingresa los siguientes datos</h4>
                 <p>Nombre the rial</p>
                 <input type="text">
                 <p>apellido y linaje (apellido)</p>
@@ -50,7 +50,16 @@
                 </div>
             </div>
             <div id="pregunta-3" class="pregunta">
-
+                <h4>Selecciona el tipo de pan que queris</h4>
+                <label><input type="radio"> marraqueta pelua</label>
+                <p></p>
+                <label><input type="radio"> tus panes bb 1313 </label>
+                <p></p>
+                <label><input type="radio"> ayuyaaaaaaaaa</label>
+                <p></p>
+                <div class="button-container">
+                    <button onClick="seleccionarEtapa(4);">Siguiente</button>
+                </div>
             </div>
             <div id="pregunta-4" class="pregunta">
 
@@ -193,7 +202,7 @@
 
         #pregunta-4 {
             height: 250px;
-        }        
+        }
 
         #pregunta-5 {
             height: 250px;
@@ -208,6 +217,11 @@
 
         .button-container {
             text-align: center;
+        }
+
+        .opcion {
+            margin-bottom: 5px;
+            margin-top: 5px;
         }
 
         input[type="text"] {
