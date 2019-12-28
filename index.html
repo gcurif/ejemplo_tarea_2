@@ -51,22 +51,75 @@
             </div>
             <div id="pregunta-3" class="pregunta">
                 <h4>Selecciona el tipo de pan que queris</h4>
-                <label><input type="radio"> marraqueta pelua</label>
+                <label><input type="radio" name="opciones_pan"> marraqueta pelua</label>
                 <p></p>
-                <label><input type="radio"> tus panes bb 1313 </label>
+                <label><input type="radio" name="opciones_pan"> tus panes bb 1313 </label>
                 <p></p>
-                <label><input type="radio"> ayuyaaaaaaaaa</label>
+                <label><input type="radio" name="opciones_pan"> ayuyaaaaaaaaa</label>
                 <p></p>
                 <div class="button-container">
                     <button onClick="seleccionarEtapa(4);">Siguiente</button>
                 </div>
             </div>
             <div id="pregunta-4" class="pregunta">
-
+                <h3>Selecciona el lugar de despacho</h3>
+                <br>
+                <label>Región :</label>
+                <select>
+                    <option>Metropolitana de Santiago</option>
+                    <option>sadsada</option>
+                    <option>sadsada</option>
+                    <option>sadsada</option>
+                    <option>sadsada</option>
+                </select>
+                <label>Ciudad :</label>
+                <select>
+                    <option>sadsada</option>
+                    <option>sadssadsadsaada</option>
+                    <option>sadsada</option>
+                    <option>sadsada</option>
+                    <option>sadsada</option>
+                </select>
+                <label>Comuna :</label>
+                <select>
+                    <option>sadsada</option>
+                    <option>sadsadsads</option>
+                    <option>sadsada</option>
+                    <option>sadsada</option>
+                    <option>sadsada</option>
+                </select>
+                <br>
+                <p>Dirección (ejemplo: juan ferra 4166)</p>
+                <input type="text">
+                <div class="button-container">
+                    <button onClick="seleccionarEtapa(5);">Siguiente</button>
+                </div>
             </div>
             <div id="pregunta-5" class="pregunta">
-
+                <h4>Selecciona el medio por el cual te avisamos de la entrega</h4>
+                <label><input type="radio" name="opciones_entrega"> LLamado telefonico </label>
+                <p></p>
+                <label><input type="radio" name="opciones_entrega"> WhatsApp </label>
+                <p></p>
+                <label><input type="radio" name="opciones_entrega"> Fuegos artificiales</label>
+                <p></p>
+                <div class="button-container">
+                    <button onClick="seleccionarEtapa(6);">Siguiente</button>
+                </div>                
             </div>
+            <div id="pregunta-6" class="pregunta">
+                <h4>Para Finalizar ingresa tu correo</h4>
+                <input type="text">
+                <div class="button-container">
+                    <button onClick="seleccionarEtapa(7);">Siguiente</button>
+                </div>  
+            </div>
+            <div id="pregunta-7" class="pregunta">
+                <h3>Formulario terminado correctamente!</h3>
+                <p>A tu correo electronico llegara un mensaje de ejemplo wea wea</p>
+                <img src="completed1.jpg">
+                <p></p>
+            </div>            
         </div>
     </div>
 
@@ -84,6 +137,8 @@
         var etapa3 = document.getElementById('pregunta-3');
         var etapa4 = document.getElementById('pregunta-4');
         var etapa5 = document.getElementById('pregunta-5');
+        var etapa6 = document.getElementById('pregunta-6');
+        var etapa7 = document.getElementById('pregunta-7');
 
         function iniciarFormulario() {
             seleccionarEtapa(CODIGO_ETAPA_INICIAL);
@@ -123,6 +178,14 @@
             if (codigoEtapa === 5) {
                 etapa5.style.display = 'block';
             }
+
+            if (codigoEtapa === 6) {
+                etapa6.style.display = 'block';
+            }
+
+            if (codigoEtapa === 7) {
+                etapa7.style.display = 'block';
+            }            
         }
 
         function ocultarTodasLasEtapas() {
@@ -131,6 +194,8 @@
             etapa3.style.display = 'none';
             etapa4.style.display = 'none';
             etapa5.style.display = 'none';
+            etapa6.style.display = 'none';
+            etapa7.style.display = 'none';
         }
 
         iniciarFormulario();
@@ -201,11 +266,15 @@
         }
 
         #pregunta-4 {
-            height: 250px;
+            height: 270px;
         }
 
         #pregunta-5 {
             height: 250px;
+        }
+
+        .centered-just-content{
+            margin-left: 25%;
         }
 
         hr {
@@ -230,6 +299,13 @@
             border-radius: 5px;
         }
 
+        select{
+            /*width: 160px;*/
+            height: 30px;
+            margin-right: 15px;
+            width: fit-content;
+        }
+
         button {
             /* Version original extraida desde: https://freefrontend.com/css-buttons/  */
             font-size: 12pt;
@@ -249,6 +325,12 @@
             padding: 1.25rem 2rem;
             background: #fff;
             border-color: yellowgreen;
+        }
+
+        button:hover,
+        button:focus,
+        button:active {
+            letter-spacing: 0.125rem;
         }
 
         .columna-50 {
