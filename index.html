@@ -730,6 +730,9 @@
                 <img src="completed1.jpg" width="400px">
                 <p></p>
             </div>
+            <div id="pantalla_cargando" style="display: none">
+                <h1> CARGANDO, ESPERATE PORFAOOOR ...</h1>
+            </div>
         </div>
     </div>
 
@@ -745,6 +748,7 @@
         var etapa5 = document.getElementById('pregunta-5');
         var etapa6 = document.getElementById('pregunta-6');
         var etapa7 = document.getElementById('pregunta-7');
+        var pantallaCargando = document.getElementById('pantalla_cargando');
 
         function iniciarFormulario() {
             seleccionarEtapa(CODIGO_ETAPA_INICIAL);
@@ -831,6 +835,10 @@
 
         function finalizarFormulario(){
 
+            //(0) SE MUESTRA PANTALLA DE CARGANDO MIENTRAS SE REALIZA EL PROCESO
+            ocultarTodasLasEtapas();
+            pantallaCargando.style.display = 'block';
+
             //(1) EN ESTA PARTE SE EXTRAEN TODOS LOS DATOS DE LOS INPUTS ANTERIORES
             var nombre =  document.getElementById('inputNombre').value;
             var apellido =  document.getElementById('inputApellido').value;
@@ -895,6 +903,7 @@
         }
 
         function mostrarFinal(){
+            pantallaCargando.style.display = 'none';
             seleccionarEtapa(7);
         }
 
