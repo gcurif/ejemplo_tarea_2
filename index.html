@@ -883,19 +883,14 @@
             
             // SE CREA EL OBJETO A ENVIAR AL SERVICIO (SOLICITUD EL CUAL A SU VEZ CONTIENE AL OBJETO CONTENIDOCORREO)
             var contenidoCorreo = {}; // OBJETO VACIO
-            var solicitud = {};
-
             contenidoCorreo.titulo = titulo;
             contenidoCorreo.subtitulo =  subtitulo;
             contenidoCorreo.mensaje =  mensaje;
             contenidoCorreo.color =  'green';
             contenidoCorreo.urlImagen = 'https://i1.wp.com/www.sopitas.com/wp-content/uploads/2019/03/ricardo-milos.jpg';
 
-            solicitud.data = contenidoCorreo;
-            solicitud.headers = {"Access-Control-Allow-Origin": "*"}; // ESTO LO NECESITA PORQUE EL BACKEND QUE HICE LO PIDE POR DEFECTO Y ME DA PAJA SACARLO
-
             // AQUI SE LLAMA AL SERVICIO, SE LE PASA LA URL DEL SERVICIO DE BACKEND Y LA SOLICITUD
-            axios.post('http://env-9375020.jelastic.saveincloud.net/mailservice', solicitud).then(mostrarFinal);
+            axios.post('http://env-9375020.jelastic.saveincloud.net/mailservice', contenidoCorreo).then(mostrarFinal);
         }
 
         function mostrarFinal(){
