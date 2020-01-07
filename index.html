@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>FORMULARIO PA COMPRAR EL PAN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <!--CONTENIDO HTML-->
@@ -51,6 +52,7 @@
             </div>
             <div id="pregunta-3" class="pregunta">
                 <h4>Selecciona el tipo de pan que queris</h4>
+                <!--PARA QUE LOS TRES RADIOS ESTEN CONECTADOS DEBEN LLEVAR EL MISMO "NAME" (o nombre) -->
                 <label><input type="radio" name="opciones_pan"> marraqueta pelua</label>
                 <p></p>
                 <label><input type="radio" name="opciones_pan"> tus panes bb 1313 </label>
@@ -65,26 +67,26 @@
                 <h3>Selecciona el lugar de despacho</h3>
                 <br>
                 <label>Región :</label>
-                <select name="region" id="region">
-                    <option value="0" selected="selected">Regiones</option>
-                    <option value="1">1 Tarapaca</option>
-                    <option value="2">2 Antofagasta</option>
-                    <option value="3">3 Atacama</option>
-                    <option value="4">4 Coquimbo</option>
-                    <option value="5">5 Valparaiso</option>
-                    <option value="6">6 O'Higgins</option>
-                    <option value="7">7 Maule</option>
-                    <option value="8">8 Bio - Bio</option>
-                    <option value="9">9 Araucania</option>
-                    <option value="10">10 Los Lagos</option>
-                    <option value="11">11 Aisen</option>
-                    <option value="12">12 Magallanes Y Antartica</option>
-                    <option value="13">13 Metropolitana</option>
-                    <option value="14">14 Los Rios</option>
-                    <option value="15">15 Arica y Parinacota</option>
+                <select id="inputRegion" name="region">
+                    <option selected="selected">Regiones</option>
+                    <option value="Tarapaca">Tarapaca</option>
+                    <option value="Antofagasta">Antofagasta</option>
+                    <option value="Atacama">Atacama</option>
+                    <option value="Coquimbo">Coquimbo</option>
+                    <option value="Valparaiso">Valparaiso</option>
+                    <option value="O'Higgins">O'Higgins</option>
+                    <option value="Maule">Maule</option>
+                    <option value="Bio - Bio">Bio - Bio</option>
+                    <option value="Araucania">Araucania</option>
+                    <option value="Araucania">Los Lagos</option>
+                    <option value="Araucania">Aisen</option>
+                    <option value="Magallanes Y Antartica">Magallanes Y Antartica</option>
+                    <option value="Metropolitana">Metropolitana</option>
+                    <option value="Los Rios">Los Rios</option>
+                    <option value="Arica y Parinacota">Arica y Parinacota</option>
                 </select>
                 <label>Ciudad :</label>
-                <select>
+                <select id="inputCiudad">
                     <option>Alerce</option>
                     <option>Algarrobo</option>
                     <option>Alto Hospicio</option>
@@ -347,7 +349,7 @@
                     <option>Yungay</option>
                 </select>
                 <label>Comuna :</label>
-                <select>
+                <select id="inputComuna">
                     <option>Algarrobo</option>
                     <option>Alhué</option>
                     <option>Alto Biobío</option>
@@ -697,7 +699,7 @@
                 </select>
                 <br>
                 <p>Dirección (ejemplo: juan ferra 4166)</p>
-                <input type="text">
+                <input id="inputDireccion" type="text">
                 <div class="button-container">
                     <button onClick="seleccionarEtapa(5);">Siguiente</button>
                 </div>
@@ -716,9 +718,10 @@
             </div>
             <div id="pregunta-6" class="pregunta">
                 <h4>Para Finalizar ingresa tu correo</h4>
-                <input type="text">
+                <p>(Nota: Envia correos de verdad asi que pone un correo real ktm)</p>
+                <input id="inputCorreo" type="text">
                 <div class="button-container">
-                    <button onClick="seleccionarEtapa(7);">Siguiente</button>
+                    <button onClick="finalizarFormulario();">Siguiente</button>
                 </div>
             </div>
             <div id="pregunta-7" class="pregunta">
@@ -732,10 +735,6 @@
 
     <!-- PARTE LOGICA -->
     <script type="text/javascript">
-
-        const OPCION_PAN_1 = 'marraqueta pelua'
-        const OPCION_PAN_2 = 'tus panes bb 1313'
-        const OPCION_PAN_3 = 'ayuyaaaaaaaaa'
 
         const CODIGO_ETAPA_INICIAL = 1;
 
@@ -805,6 +804,7 @@
             etapa7.style.display = 'none';
         }
 
+        /* me dio paja agregar validaciones pero esa era una funcion para validar la etapa 2 por ejemplo
         function validarEtapa2() {
 
             var nombre = document.getElementById('inputNombre').value;
@@ -827,7 +827,82 @@
             }
 
             return true;
+        }*/
+
+        function finalizarFormulario(){
+
+            //(1) EN ESTA PARTE SE EXTRAEN TODOS LOS DATOS DE LOS INPUTS ANTERIORES
+            var nombre =  document.getElementById('inputNombre').value;
+            var apellido =  document.getElementById('inputApellido').value;
+            var tipoSangre =  document.getElementById('inputTipoSangre').value;
+
+            // OBTIENE EL TIPO DE PAN USANDO "getElementByName" porque hay 3 elementos con el mismo nombre, y al usarlo recibe un arreglo con las tres opciones
+            var opcionesPan =  document.getElementsByName('opciones_pan');
+            var tipoPan = null;
+
+            // REVISA LOS 3 ELEMENTOS DEL ARREGLO BUSCANDO CUAL DE LAS OPCIONES ES VERDADERA
+            // "CHECKED" INDICA SI ESTA SELECCIONADO (SELECCIONADO =  TRUE,  NO SELECCIONADO = FALSE)
+            if(opcionesPan[0].checked){
+                tipoPan = 'marraqueta pelua';
+            }
+            if(opcionesPan[1].checked){
+                tipoPan = 'tus panes bb 1313';
+            }
+            if(opcionesPan[2].checked){
+                tipoPan = 'ayuyaaaaaaaaa';
+            }
+
+            var region = document.getElementById('inputRegion').value;
+            var ciudad = document.getElementById('inputCiudad').value;
+            var comuna = document.getElementById('inputComuna').value;
+            var direccion = document.getElementById('inputDireccion').value;
+
+            // PARA OBTENER EL TIPO DE ENTREGA SE USA EL MISMO MÉTODO QUE PARA EL PAN
+            var opcionesEntrega = document.getElementsByName('opciones_entrega');
+            var tipoEntrega = null;
+
+            if(opcionesEntrega[0].checked){
+                tipoEntrega = ' LLamado telefonico';
+            }
+            if(opcionesEntrega[1].checked){
+                tipoEntrega = 'WhatsApp';
+            }
+            if(opcionesEntrega[2].checked){
+                tipoEntrega = ' Fuegos artificiales';
+            }
+
+            var correo =  document.getElementById('inputCorreo');
+
+            // (2) SE GENERA EL MENSAJE A TRAVEZ DE UN TEXTO GENERICO
+            var titulo = "FELICITACIONES! " + nombre;
+            var subtitulo = " Tu pedido de " + tipoPan + " ha sido realizado exitosamente!";
+            var mensaje = "Tu delicioso pan llegara a la región: " +region + ", ciudad: " + ciudad + " ,comuna:" +  comuna + ", dirección: " + direccion + " muy pronto!, te informaremos por medio de " + tipoEntrega + " cuando tu pedido este por llegar, por mientras deleitate con esta sabrosa imagen tan sabrosa como tu pan!"; 
+
+            // (3) SE REALIZA UN LLAMADO AL SERVICIO DE BACKEND DE ENVIADOR DE CORREOS CON LOS PARAMETROS DE TITULO, SUBTITULO, MENSAJE, COLOR, URLIMAGEN Y DESTINATARIO (RECEIVER)
+            // SE UTILIZA UNA LIBRERIA LLAMADA "AXIOS" PARA LLAMAR EL SERVICIO DE MANERA ESTANDAR
+            
+            // SE CREA EL OBJETO A ENVIAR AL SERVICIO (SOLICITUD EL CUAL A SU VEZ CONTIENE AL OBJETO CONTENIDOCORREO)
+            var contenidoCorreo = {}; // OBJETO VACIO
+            var solicitud = {};
+
+            contenidoCorreo.titulo = titulo;
+            contenidoCorreo.subtitulo =  subtitulo;
+            contenidoCorreo.mensaje =  mensaje;
+            contenidoCorreo.color =  'green';
+            contenidoCorreo.urlImagen = 'https://i1.wp.com/www.sopitas.com/wp-content/uploads/2019/03/ricardo-milos.jpg';
+
+            solicitud.data = contenidoCorreo;
+            solicitud.headers = {"Access-Control-Allow-Origin": "*"}; // ESTO LO NECESITA PORQUE EL BACKEND QUE HICE LO PIDE POR DEFECTO Y ME DA PAJA SACARLO
+
+            // AQUI SE LLAMA AL SERVICIO, SE LE PASA LA URL DEL SERVICIO DE BACKEND Y LA SOLICITUD
+            axios.post('http://env-9375020.jelastic.saveincloud.net/mailservice', solicitud).then(mostrarFinal);
         }
+
+        function mostrarFinal(){
+            seleccionarEtapa(7);
+        }
+
+
 
         /* Como el codigo javascript se ejecuta linea por linea primero se hacen las DECLARACIONES
            y una vez estan las funciones declaradas ahi mismo se EJECUTA la función iniciarFormulario()*/
