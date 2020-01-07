@@ -888,6 +888,7 @@
             contenidoCorreo.mensaje =  mensaje;
             contenidoCorreo.color =  'green';
             contenidoCorreo.urlImagen = 'https://i1.wp.com/www.sopitas.com/wp-content/uploads/2019/03/ricardo-milos.jpg';
+            contenidoCorreo.destinatario = correo;
 
             // AQUI SE LLAMA AL SERVICIO, SE LE PASA LA URL DEL SERVICIO DE BACKEND Y LA SOLICITUD
             axios.post('http://env-9375020.jelastic.saveincloud.net/mailservice', contenidoCorreo).then(mostrarFinal);
